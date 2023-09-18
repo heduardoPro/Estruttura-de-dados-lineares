@@ -97,7 +97,6 @@ public:
 };
 int main() {
     
-
     Queue queue;
 
     queue.empty();
@@ -119,10 +118,12 @@ int main() {
 
     queue.pop();
 
+    cout << "\nQueue elements:" << endl;    
     queue.display();
 
     queue.pop();
     queue.pop();
-    
+    queue.pop();
+
     return 0;
 }
