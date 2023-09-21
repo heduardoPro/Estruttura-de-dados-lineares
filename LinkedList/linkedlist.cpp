@@ -1,30 +1,29 @@
 #include <iostream>
+
 using namespace std;
 
-struct Node
-{
+class Node {
+public:
     int data;
     Node* next;
 
     Node(int value) : data(value), next(nullptr) {}
 };
 
-class linkedlist {
+class LinkedList {
 private:
-   Node* head;
-
+    Node* head;
 public:
-    linkedlist() : head(nullptr) {}
-    
-    void push(int element) {
-        Node* newNode = new Node(element);
+    LinkedList() : head(nullptr) {}
+
+    void push_back(int value) {
+        Node* newNode = new Node(value);
         if (!head) {
             head = newNode;
         }
         else {
             Node* current = head;
-            while (current->next)
-            {
+            while (current->next) {
                 current = current->next;
             }
             current->next = newNode;
@@ -33,25 +32,21 @@ public:
 
     void display() {
         Node* current = head;
-        while (current)
-        {
+        while (current) {
             cout << current->data << " ";
             current = current->next;
         }
-        cout << endl;
     }
 };
 
-
 int main() {
-    
-    linkedlist ListaEncadeada;
+    LinkedList minhaLista;
 
-    ListaEncadeada.push(10);
-    ListaEncadeada.push(20);
-    ListaEncadeada.push(30);
+    minhaLista.push_back(1);
+    minhaLista.push_back(2);
+    minhaLista.push_back(3);
 
-    ListaEncadeada.display();   
+    minhaLista.display();
 
     return 0;
 }
