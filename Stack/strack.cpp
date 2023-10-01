@@ -7,88 +7,86 @@ public:
     int data;
     Node* next;
 
-    Node(int data) : data(data), next(nullptr) {}
+    Node() : data(), next(nullptr) {}
 };
 
 class Stack {
 private:
-    Node *top;
+    Node* top;
     int size;
-    int MaxSize;
 
 public:
-
-    Stack(int max) : top(nullptr), size(0), MaxSize(max) {}
-
-    bool isempty() {
-        return top == nullptr;
+    Stack() {
+        top = nullptr;
+        size = 0;
     }
 
-    bool isfull() {
-        return size == MaxSize;
-    }
-
-    void push(int element) {
-        if(isfull()) {
-            cout << "Erro. A pilha está cheia nao e possivel adicinar elementos a ela." << endl;
-            return;
-        }
-        Node* newNode = new Node(element);
+    void push(int value) {
+        Node* newNode = new Node();
+        newNode->data = value;
         newNode->next = top;
         top = newNode;
 
         size = size + 1;
     }
-
     void pop() {
-        if(isempty()) {
-            cout << "A pilha está vazia." << endl;
-        }
-
-        int data = top->data;
-        Node* aux = top;
-        top = aux->next;
-        delete aux;
-        size = size - 1;
-    }
-    
-    void display() {
-        if (isempty()) {
-            cout << "Pilha vazia." << endl;
+        if(empty()) {
+            cout << "A pilha esta vazia." << endl;
             return;
         }
-        Node* current = top;
-        while (current != nullptr) {
-            cout << current->data << " ";
-            current = current->next;
-        }
-        cout << endl;
+        Node* aux = top;
+        top = top->next;
+        delete aux;
+
     }
 
-    ~Stack() {
-        while(!isempty()) {
-            pop();
+    bool empty() {
+        return top == nullptr; 
+    }
+
+    int peek() {
+        return top->data;
+    }
+
+    void display() {
+        if(empty()) {
+            cout << "A pilha esta vazia. " << endl; 
+        }
+        Node* current = top;
+        while (current != nullptr)
+        {
+            cout << current->data << endl;
+            current = current->next;
         }
     }
+
+    ~Stack() {}
 };
 
 int main() {
 
-    Stack pilha(5);
+    Stack pilha;
 
-    pilha.isempty();
 
-    pilha.push(1);
-    pilha.push(2);
+    pilha.push(10);
+    pilha.push(20);
+    pilha.push(30);
+
+    cout << "\nTOPO" << endl;
     pilha.display();
-    pilha.push(3);
+    cout << "BASE" << endl;
 
-    pilha.display();
+    cout << "\nA pilha esta vazia: SIM = 1 NAO = 0: " << pilha.empty() << endl;
 
-    pilha.isfull();
+    cout << "\nElemento do topo da pilha: " << pilha.peek() << endl;
 
+    cout << "\nRemovendo o ultimo elemento da pilha: " << pilha.peek() << endl;
     pilha.pop();
+
+    cout << "\nApos retirar elemento do topo." << endl;
+    cout << "\nTOPO" << endl;
     pilha.display();
+    cout << "BASE" << endl;
 
     return 0;
 }
