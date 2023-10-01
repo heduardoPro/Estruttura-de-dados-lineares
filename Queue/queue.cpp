@@ -2,6 +2,8 @@
 
 using namespace std;
 
+const int MAX_SIZE = 100;
+
 class Node {
 public:
 
@@ -99,17 +101,17 @@ int main() {
     
     Queue queue;
 
-    queue.empty();
+    cout << queue.empty() << endl;
     queue.push(1);
     queue.push(1);
     queue.push(3);
+    
+    cout << "\nQueue elements:" << endl;
+    queue.display();
 
     int size = queue.getSize();
     cout << "Queue size: " << size << endl;
 
-    cout << "\nQueue elements:" << endl;
-    queue.display();
-    
     cout << "\nFirst in line:" << endl;
     queue.front();
 
