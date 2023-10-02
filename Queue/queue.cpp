@@ -124,8 +124,8 @@ int main() {
     queue.display();
 
     queue.pop();
-    queue.pop();
-    queue.pop();
+
+    queue.display();
 
     return 0;
 }
