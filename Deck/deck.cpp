@@ -12,20 +12,14 @@ public:
 
 class Deck {
 private:
-    Node* front; // 
-    Node* rear; // 
+    Node* front; // elemento a esquerda
+    Node* rear; // elemento a direita
     int count;
 
 public:
     Deck() : front(nullptr), rear(nullptr), count(0) {}
 
-    void inicDeck() {
-        front = nullptr;
-        rear = nullptr;
-        count = 0;
-    }
-
-    void insertFirst(int element) {
+    void insertFront(int element) {
         Node* newNode = new Node(element);
         if (isEmpty()) {
             front = rear = newNode;
@@ -49,7 +43,7 @@ public:
         count++;
     }
 
-    void removeFirst() {
+    void removeFront() {
         if (!isEmpty()) {
             Node* temp = front;
             front = front->next;
@@ -118,21 +112,17 @@ public:
 int main() {
     Deck deque;
 
-    deque.inicDeck();
+    for(int i = 0; i <= 20; i++) {
+        deque.insertFront(i);
+    }
 
-    deque.insertFirst(1);
-    deque.insertFirst(2);
-    deque.insertLast(3);
-    deque.insertFirst(20);
-    deque.insertFirst(100);
-    deque.insertLast(100);
     deque.printDeque();
 
     cout << "\nFirst element: " << deque.first() << endl; // 100
     cout << "Last element: " << deque.last() << endl; // 100
     cout << "Size: " << deque.size() << "\n" << endl; // 6
 
-    deque.removeFirst();
+    deque.removeFront();
     deque.removeLast();
 
     cout << "First element after removal: " << deque.first() << endl;
@@ -141,7 +131,7 @@ int main() {
 
     deque.printDeque(); // front << 20 | 2 | 1 | 3 >> rear
 
-    deque.removeFirst();
+    deque.removeFront();
     deque.removeLast();
 
      deque.printDeque(); // front <<  2 | 1  >> rear
